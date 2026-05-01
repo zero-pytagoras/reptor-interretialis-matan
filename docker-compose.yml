@@ -1,0 +1,12 @@
+services:
+  nginx:
+    build: .
+    image: my-nginx
+    container_name: nginx-container
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
