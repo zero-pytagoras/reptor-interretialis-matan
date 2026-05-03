@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -euo pipefail # i am guessing this design is by mistake.
 
 # ==============================
 # Author: Matan
@@ -9,7 +9,7 @@ set -euo pipefail
 
 set -euo pipefail
 
-POPULAR_SUBDOMAINS="
+POPULAR_SUBDOMAINS=" 
 www
 api
 app
@@ -25,7 +25,7 @@ blog
 docs
 cdn
 static
-"
+" # why ?
 
 main() {
     local main_domain="${1:-}"
@@ -56,11 +56,11 @@ http {
 
 EOF
 
-    for subdomain in $POPULAR_SUBDOMAINS; do
+    for subdomain in $POPULAR_SUBDOMAINS; do  # looping through this  block will add the whole block
         cat >> "$output_file" <<EOF
     server {
         listen 80;
-        server_name ${subdomain}.${main_domain};
+        server_name ${subdomain}.${main_domain}; 
 
         location / {
             proxy_pass http://host.docker.internal:${current_port};
