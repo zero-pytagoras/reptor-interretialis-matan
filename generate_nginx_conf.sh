@@ -56,7 +56,8 @@ http {
 
 EOF
 
-    for subdomain in $POPULAR_SUBDOMAINS; do  # looping through this  block will add the whole block
+    for subdomain in $POPULAR_SUBDOMAINS; do  # looping through this  block will add the whole block which is not what upstream does. you are creating new virtualhosts on web server
+                                            # you are suppose to tak domain -> apped to it all the sub-domain, and make the original one push redirect traffic.
         cat >> "$output_file" <<EOF
     server {
         listen 80;
@@ -94,4 +95,4 @@ EOF
     done
 }
 
-main "$@"
+main "$@" # good work on taking all variables
