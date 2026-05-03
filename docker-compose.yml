@@ -8,5 +8,5 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway" # this is not required
     restart: unless-stopped
